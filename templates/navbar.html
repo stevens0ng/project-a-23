@@ -1,0 +1,84 @@
+{% load socialaccount %}
+{% load static %}
+
+<html>
+  <!--
+  primary color = #063970
+  -->
+  <head>
+    <!--meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--CSS for bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+
+  <body style="overflow: overlay">
+    <nav class="sticky-top navbar navbar-expand-lg navbar-dark py-4" style="border-bottom: 3px solid white; background-color: #063970; box-shadow: 0 8px 10px 0px #999;">
+
+      <!--title link to homepage-->
+      <a class="navbar-brand font-weight-bold" style="color: #FFFFFF; margin-left: 10" href="/">
+        Assignment Organizer
+        {% include 'calendar-check.svg' %}
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarText" style="color: #FFFFFF;">
+          <ul class="navbar-nav mr-auto" style=" width: 40%; margin: 0 auto; white-space: nowrap">
+
+            {% block assignments %}
+            <li class="nav-item py-2" style="border-bottom: 3px solid transparent; margin-right: 3%">
+              <a class="nav-link" href="/assignments">AGENDA</a>
+            </li>
+            {% endblock %}
+
+            <div style="margin-right: 4%; border-left:1px solid white; height:70"></div>
+
+            {% block mycourses %}
+            <li class="nav-item py-2" style="border-bottom: 3px solid transparent; margin-right: 3%">
+                <a class="nav-link" href="/mycourses">MY COURSES</a>
+            </li>
+            {% endblock %}
+
+            <div style="margin-right: 4%; border-left:1px solid white; height:70"></div>
+
+            {% block allcourses %}
+            <li class="nav-item py-2" style="border-bottom: 3px solid transparent; margin-right: 3%">
+              <a class="nav-link" href="/courses">ALL COURSES</a>
+            </li>
+            {% endblock %}
+
+            <div style="margin-right: 4%; border-left:1px solid white; height:70"></div>
+
+            {% block schedule %}
+            <li class="nav-item py-2" style="border-bottom: 3px solid transparent; margin-right: 3%">
+              <a class="nav-link" href="/myschedule">MY SCHEDULE</a>
+            </li>
+            {% endblock %}
+          </ul>
+      </div>
+
+      <!--profile options dropdown menu-->
+      <div class="dropdown">
+        <button class="btn dropdown-toggle" style="margin-right: 30; color:white; background-color:transparent; font-weight:600; border-color:white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ user.username }}
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" style="color:red;" href="/custom_logout">Logout</a>
+        </div>
+      </div>
+
+    </nav>
+    {% block content %}
+    {% endblock %}
+
+     <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  </body>
+</html>

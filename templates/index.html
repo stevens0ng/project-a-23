@@ -1,0 +1,71 @@
+{% load socialaccount %}
+
+<head>
+  <!--meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!--CSS for bootstrap-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<html>
+  <body>
+    {% if user.is_authenticated %}
+      {% include 'navbar.html' %}
+
+          {% now "H" as current_time %}
+
+          <center>
+        {% if current_time|add:"0" >= 12  and 17 > current_time|add:"0" %}
+        <h1 style="padding: 20px" class="font-weight-bold">Good afternoon, {{user}} </h1>
+              {% endif %}
+          {% if current_time|add:"0" >= 17 %}
+          <h1 style="padding: 20px" class="font-weight-bold">Good evening, {{user}} </h1>
+          {% endif %}
+          {% if current_time|add:"0" >= 0 and 12 > current_time|add:"0" %}
+          <h1 style="padding: 20px" class="font-weight-bold" >Good morning, {{user}} </h1>
+          {% endif %}
+          </center>
+
+
+          <center>
+            
+            <div class="animated fadeIn">
+          <div class="card border-primary mb-3" style="max-width: 45rem;" >
+            <div class="card-body">
+          
+              <h5 class="card-title">Welcome to the Assignment Organizer!</h5>
+              <p class="card-text">View and add personal assignments and tasks in your <a href="assignments">Agenda</a></p>
+              <p class="card-text">Enroll in your classes in <a href="courses">All Courses</a></p>
+              <p class="card-text">View and add class assignments on each course page</p>
+              <p class="card-text">View all your enrolled classes in <a href="mycourses">My Courses</a></p>
+              <p class="card-text">View your class schedule in <a href="myschedule">My Schedule</a></p>
+
+
+          
+            </div>
+          </div>
+        </div>
+        
+        </center>
+        
+          
+      
+      
+        
+
+          
+
+        <!-- {% for item in object_list %}
+          {{item}}
+        {% endfor %} -->
+
+        
+      
+    {% else %}
+      {% include "landingpage.html" %}
+    {% endif %}
+  </body>
+</html>
+

@@ -1,0 +1,48 @@
+{% load socialaccount %}
+
+<!--landing page-->
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+    </head>
+
+    <body style="background: rgb(255,255,255); background: linear-gradient(0deg, rgba(6,57,112,1) 50%, rgba(255,255,255,1) 50%);"></body>
+
+    <h1 style="
+        font-size: 70px;
+        color: #063970;
+        font-weight: 600;
+        width: 8em;
+        position: relative;
+        top: 22%;
+        left: 30%;">
+        Assignment Organizer
+    </h1>
+
+    <h3 style="
+        font-size: 40px;
+        color: white;
+        font-weight: 400;
+        width: 20em;
+        position: relative;
+        top: 40%;
+        left: 30%;">
+        Stay on top of your work.
+    </h3>
+
+    <h3 style="
+        font-size: 25px;
+        color: white;
+        font-weight: 300;
+        width: 20em;
+        position: relative;
+        top: 42%;
+        left: 30%;">
+        Keep track of your agenda and schedule. Share course assignments with other classmates.
+    </h3>
+
+    <div style="">
+        <a class="btn btn-primary btn-lg" style="background-color:#D95107; border: 2px transparent;
+border-radius: 0px; top: 20px; right : 20px; position: absolute;" href="{% provider_login_url 'google' %}" role="button">Log in with Google</a>
+    </div>
+</html>
