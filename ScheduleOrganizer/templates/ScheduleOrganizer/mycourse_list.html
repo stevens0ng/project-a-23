@@ -1,0 +1,68 @@
+{% extends 'navbar.html' %}
+{% load socialaccount %}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+{% block mycourses %}
+<li class="nav-item py-2" style="border-bottom: 3px solid white; color: #FFFFFF; margin-right: 3%">
+    <a class="nav-link" href="/mycourses">MY COURSES</a>
+</li>
+{% endblock %}
+
+{% if user.is_authenticated %}
+  {% include 'navbar.html' %}
+
+{% block content %}
+
+{% for course in courses %}
+<div id="accordion">
+    <div class="card">
+        <div class="card-header" id="heading{{ course.id }}">
+            <h5 class="mb-0">
+                <a  href="{% url 'remove_course'%}?course={{course.name}}?user={{user.id}}">
+                    <button type="submit" class="btn btn-sm" name = 'yo' style="background-color: orange">
+                        Remove from My Courses
+                    </button>
+                </a>
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{ course.id }}" aria-expanded="false"
+                        aria-controls="collapseOne">
+                    {{ course.name }}
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapse{{ course.id }}" class="collapse " aria-labelledby="heading{{ course.id }}" data-parent="#accordion">
+            <div class="card-body">
+                <p>Section: {{ course.section }}</p>
+                {% if course.instructor != "" %}
+                    <p>Instructor: {{ course.instructor }}</p>
+                {% endif %}
+                <a href="courses/{{ course.id }}">View Assignments</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- https://stackoverflow.com/questions/17642872/refresh-page-and-keep-scroll-position -->
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var scrollpos = localStorage.getItem('scrollpos');
+        if (scrollpos){
+            window.scrollTo(0, scrollpos);
+         }
+    });
+    window.onbeforeunload = function(e) {
+        localStorage.setItem('scrollpos', window.scrollY);
+    };
+</script>
+
+{% endfor %}
+
+{% endblock %}
+
+{% else %}
+  {% include "landingpage.html" %}
+{% endif %}

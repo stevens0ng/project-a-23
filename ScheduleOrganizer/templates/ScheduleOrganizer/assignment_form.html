@@ -1,0 +1,29 @@
+{% load socialaccount %}
+<html>
+
+  <body>
+    {% if user.is_authenticated %}
+      {% include 'navbar.html' %}
+<center>
+
+<h3 style="padding: 20px">Your Assignment</h3>
+        <a class="btn btn-small" href="{%url 'assignments' %}" style="background-color: orange; margin-bottom: 30;"><< Go back</a>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    [MM/DD/YYYY]
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+
+</center>
+
+    {% else %}
+      {% include "landingpage.html" %}
+    {% endif %}
+  </body>
+
+</html>

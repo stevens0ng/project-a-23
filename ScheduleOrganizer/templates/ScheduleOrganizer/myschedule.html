@@ -1,0 +1,162 @@
+{% extends 'navbar.html' %}
+{% load socialaccount %}
+
+<head>
+    <!--meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--CSS for bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+{% block schedule %}
+<li class="burger nav-item py-2" style="border-bottom: 3px solid white; margin-right: 3%">
+    <a class="nav-link" href="/assignments">MY SCHEDULE</a>
+</li>
+{% endblock %}
+
+{% if user.is_authenticated %}
+  {% include 'navbar.html' %}
+
+{% block content %}
+
+<h2 style="text-align:center; padding: 20px">My Schedule</h2>
+
+<ul class="list-group">
+    <h4 style="text-align:left; padding: 20px">Monday</h4>
+    {% for schedule in mymonS %}
+        <a href="" class="list-group-item list-group-item-action flex-column align-items-start" style="padding: 20px">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Meeting days: {{ schedule.days }}</h5>
+          </div>
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Start time: {{ schedule.time_start }}</h5>
+          </div>
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">End time: {{ schedule.time_end }}</h5>
+          </div>
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Instructor: {{ schedule.instructor }}</h5>
+          </div>  
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ schedule }}</h5>
+          </div>          
+              {% csrf_token %}            
+        </a>
+    {% endfor %}
+</ul>
+
+<ul class="list-group">
+  <h4 style="text-align:left; padding: 20px">Tuesday</h4>
+  {% for schedule in mytueS %}
+      <a href="" class="list-group-item list-group-item-action flex-column align-items-start" style="padding: 20px">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Meeting days: {{ schedule.days }}</h5>
+        </div>
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Start time: {{ schedule.time_start }}</h5>
+        </div>
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">End time: {{ schedule.time_end }}</h5>
+        </div>
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Instructor: {{ schedule.instructor }}</h5>
+        </div>  
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{ schedule }}</h5>
+        </div>        
+            {% csrf_token %}            
+      </a>
+  {% endfor %}
+</ul>
+
+<ul class="list-group">
+  <h4 style="text-align:left; padding: 20px">Wednesday</h4>
+  {% for schedule in mywedS %}
+      <a href="" class="list-group-item list-group-item-action flex-column align-items-start" style="padding: 20px">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Meeting days: {{ schedule.days }}</h5>
+        </div>
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Start time: {{ schedule.time_start }}</h5>
+        </div>
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">End time: {{ schedule.time_end }}</h5>
+        </div>
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Instructor: {{ schedule.instructor }}</h5>
+        </div>  
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{ schedule }}</h5>
+        </div>       
+            {% csrf_token %}            
+      </a>
+  {% endfor %}
+</ul>
+
+<ul class="list-group">
+  <h4 style="text-align:left; padding: 20px">Thursday</h4>
+  {% for schedule in mythuS %}
+      <a href="" class="list-group-item list-group-item-action flex-column align-items-start" style="padding: 20px">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Meeting days: {{ schedule.days }}</h5>
+        </div>
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Start time: {{ schedule.time_start }}</h5>
+        </div>
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">End time: {{ schedule.time_end }}</h5>
+        </div>
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Instructor: {{ schedule.instructor }}</h5>
+        </div>  
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{ schedule }}</h5>
+        </div>       
+            {% csrf_token %}            
+      </a>
+  {% endfor %}
+</ul>
+
+<ul class="list-group">
+  <h4 style="text-align:left; padding: 20px">Friday</h4>
+  {% for schedule in myfriS %}
+      <a href="" class="list-group-item list-group-item-action flex-column align-items-start" style="padding: 20px">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Meeting days: {{ schedule.days }}</h5>
+        </div>
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Start time: {{ schedule.time_start }}</h5>
+        </div>
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">End time: {{ schedule.time_end }}</h5>
+        </div>
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Instructor: {{ schedule.instructor }}</h5>
+        </div>  
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{ schedule }}</h5>
+        </div>         
+            {% csrf_token %}            
+      </a>
+  {% endfor %}
+</ul>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var scrollpos = localStorage.getItem('scrollpos');
+        if (scrollpos){
+            window.scrollTo(0, scrollpos);
+         }
+    });
+    window.onbeforeunload = function(e) {
+        localStorage.setItem('scrollpos', window.scrollY);
+    };
+</script>
+
+{% endblock %}
+
+{% else %}
+  {% include "landingpage.html" %}
+{% endif %}

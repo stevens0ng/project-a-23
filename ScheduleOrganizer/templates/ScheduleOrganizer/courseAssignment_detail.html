@@ -1,0 +1,41 @@
+{% load socialaccount %}
+
+<html>
+  <body>
+    {% if user.is_authenticated %}
+      {% include 'navbar.html' %}
+
+<br>
+<center>
+    <h5 style="color: gray">ASSIGNMENT</h5>
+    <h1>{{ courseAssignment }}</h1>
+    <hr>
+
+    <h5 style="color: gray">DUE DATE</h5>
+    <h2>{{ courseAssignment.due_date }}</h2>
+    <hr>
+
+    <h5 style="color: gray">DESCRIPTION</h5>
+    <h3>{{ courseAssignment.description }}</h3>
+    <hr>
+
+    <html>
+  <body>
+    {% if courseAssignment.complete %}
+      <h4 style="color: green">Complete</h4>
+    {% else %}
+    <h4 style="color: red">Incomplete</h4>
+    {% endif %}
+  </body>
+</html>
+<br>
+
+<!-- <a href = "{% url 'courseAssignment-list' pk=1)}">Go Back</a> -->
+
+        <a class="btn btn-small" href="{{request.META.HTTP_REFERER}}" style="background-color: orange; margin-bottom: 30; margin: 6px"><< Go back</a>
+
+    {% else %}
+      {% include "landingpage.html" %}
+    {% endif %}
+  </body>
+</html>

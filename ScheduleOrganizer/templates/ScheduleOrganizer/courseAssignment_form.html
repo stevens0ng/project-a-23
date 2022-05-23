@@ -1,0 +1,29 @@
+{% load socialaccount %}
+
+<html>
+  <body>
+    {% if user.is_authenticated %}
+      {% include 'navbar.html' %}
+<center>
+
+<h3>Class Assignment</h3>
+<form method="POST" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    [MM/DD/YYYY]
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+<!-- <a href="course/{{ course.id }}">Go back</a> -->
+
+    <a class="btn btn-small" href="{{request.META.HTTP_REFERER}}" role="button" style="background-color: orange; margin-bottom: 30; margin: 6px"><< Go Back</a>
+
+</center>
+
+    {% else %}
+      {% include "landingpage.html" %}
+    {% endif %}
+  </body>
+</html>

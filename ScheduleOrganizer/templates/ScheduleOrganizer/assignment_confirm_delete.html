@@ -1,0 +1,21 @@
+{% load socialaccount %}
+
+<html>
+  <body>
+    {% if user.is_authenticated %}
+      {% include 'navbar.html' %}
+<center>
+<form method="POST">
+    {% csrf_token %}
+    <h1 style="padding: 20px">Are you sure you want to delete this assignment? "{{ assignment }}"</h1>
+    <input style="background-color: #EF5D3A" class="btn btn-small" type ="submit" value="Delete" />
+</form>
+
+<a class="btn btn-small" href="{% url 'assignments' %}" style="background-color: orange; margin-bottom: 30; margin: 6px"><< Go back</a>
+
+    </center>
+    {% else %}
+      {% include "landingpage.html" %}
+    {% endif %}
+  </body>
+</html>

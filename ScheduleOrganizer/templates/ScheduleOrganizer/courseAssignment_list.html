@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<html>
+  <body>
+    {% if user.is_authenticated %}
+      {% include 'navbar.html' %}
+
+
+<center>
+    <h1 style="padding: 20">Course Assignments</h1>
+    <a class="btn btn-small" href="{%url 'mycourses' %}" style="background-color: orange; margin-bottom: 30; margin: 6px"><< Go back</a>
+    <a class="btn btn-small" href="{% url 'courseAssignment-create' %}" role="button" style="background-color: orange; margin-bottom: 30; margin: 6px">
+    Add Assignment</a>
+
+
+
+    <!-- https://getbootstrap.com/docs/4.0/components/card/ -->
+        <div style=" display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding: 30px; grid-auto-rows: minmax(100px, auto);">
+            {% for courseAssignment in courseAssignments %}
+            {% if courseAssignment.complete %}
+        <div class="card mb-3" style="max-width: 45rem; border: 3px solid;">
+          <div class="card-body">
+              <h6 class="mb-2" style="color: green">COMPLETE</h6>
+              <h5 class="card-title">{{courseAssignment.title}}</h5>
+              <hr>
+              <h6 class="card-subtitle mb-2 text-muted">Due Date: {{courseAssignment.due_date}}</h6>
+              <p class="card-subtitle mb-2 text-muted">{{courseAssignment.description}}</p>
+              <a class="btn btn-small" href ="/courses/{{courseAssignment.id}}/1" style="background-color: orange;">View</a>
+              <a class="btn btn-small" href ="courseAssignment-update/{{ courseAssignment.id }}" style="background-color: orange;">Edit</a>
+              <a class="btn btn-small" href ="/courses/courseAssignment-delete/{{ courseAssignment.id }}" style="background-color: orange;">Delete</a>
+          </div>
+        </div>
+
+    {% else %}
+        <div class="card mb-3" style="max-width: 45rem; border: 3px solid;">
+          <div class="card-body">
+              <h6 class="mb-2" style="color: red">INCOMPLETE</h6>
+              <h5 class="card-title">{{courseAssignment.title}}</h5>
+              <hr>
+              <h6 class="card-subtitle mb-2 text-muted">Due Date: {{courseAssignment.due_date}}</h6>
+              <p class="card-subtitle mb-2 text-muted">{{courseAssignment.description}}</p>
+              <a class="btn btn-small" href ="/courses/{{courseAssignment.id}}/1" style="background-color: orange;">View</a>
+              <a class="btn btn-small" href ="courseAssignment-update/{{ courseAssignment.id }}" style="background-color: orange;">Edit</a>
+              <a class="btn btn-small" href ="/courses/courseAssignment-delete/{{ courseAssignment.id }}" style="background-color: orange;">Delete</a>
+          </div>
+        </div>
+
+    {% endif %}
+{% endfor %}
+
+</div>
+
+</center>
+
+    {% else %}
+      {% include "landingpage.html" %}
+    {% endif %}
+  </body>
+</html>
+
+
+
+
+
+
+
+
